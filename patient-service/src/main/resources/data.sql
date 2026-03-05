@@ -3,6 +3,8 @@ CREATE TABLE IF NOT EXISTS patient
 (
     id              UUID PRIMARY KEY,
     name            VARCHAR(255)        NOT NULL,
+    gender          VARCHAR(10)         NOT NULL,
+    age             INTEGER             NOT NULL,
     email           VARCHAR(255) UNIQUE NOT NULL,
     address         VARCHAR(255)        NOT NULL,
     date_of_birth   DATE                NOT NULL,
@@ -10,148 +12,34 @@ CREATE TABLE IF NOT EXISTS patient
     );
 
 -- Insert well-known UUIDs for specific patients
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '123e4567-e89b-12d3-a456-426614174000',
-       'John Doe',
-       'john.doe@example.com',
-       '123 Main St, Springfield',
-       '1985-06-15',
-       '2024-01-10'
-    WHERE NOT EXISTS (SELECT 1
-                  FROM patient
-                  WHERE id = '123e4567-e89b-12d3-a456-426614174000');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '123e4567-e89b-12d3-a456-426614174001',
-       'Jane Smith',
-       'jane.smith@example.com',
-       '456 Elm St, Shelbyville',
-       '1990-09-23',
-       '2023-12-01'
-    WHERE NOT EXISTS (SELECT 1
-                  FROM patient
-                  WHERE id = '123e4567-e89b-12d3-a456-426614174001');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '123e4567-e89b-12d3-a456-426614174002',
-       'Alice Johnson',
-       'alice.johnson@example.com',
-       '789 Oak St, Capital City',
-       '1978-03-12',
-       '2022-06-20'
-    WHERE NOT EXISTS (SELECT 1
-                  FROM patient
-                  WHERE id = '123e4567-e89b-12d3-a456-426614174002');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '123e4567-e89b-12d3-a456-426614174003',
-       'Bob Brown',
-       'bob.brown@example.com',
-       '321 Pine St, Springfield',
-       '1982-11-30',
-       '2023-05-14'
-    WHERE NOT EXISTS (SELECT 1
-                  FROM patient
-                  WHERE id = '123e4567-e89b-12d3-a456-426614174003');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '123e4567-e89b-12d3-a456-426614174004',
-       'Emily Davis',
-       'emily.davis@example.com',
-       '654 Maple St, Shelbyville',
-       '1995-02-05',
-       '2024-03-01'
-    WHERE NOT EXISTS (SELECT 1
-                  FROM patient
-                  WHERE id = '123e4567-e89b-12d3-a456-426614174004');
-
--- Insert well-known UUIDs for specific patients
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '223e4567-e89b-12d3-a456-426614174005',
-       'Michael Green',
-       'michael.green@example.com',
-       '987 Cedar St, Springfield',
-       '1988-07-25',
-       '2024-02-15'
-    WHERE NOT EXISTS (SELECT 1 FROM patient WHERE id = '223e4567-e89b-12d3-a456-426614174005');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '223e4567-e89b-12d3-a456-426614174006',
-       'Sarah Taylor',
-       'sarah.taylor@example.com',
-       '123 Birch St, Shelbyville',
-       '1992-04-18',
-       '2023-08-25'
-    WHERE NOT EXISTS (SELECT 1 FROM patient WHERE id = '223e4567-e89b-12d3-a456-426614174006');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '223e4567-e89b-12d3-a456-426614174007',
-       'David Wilson',
-       'david.wilson@example.com',
-       '456 Ash St, Capital City',
-       '1975-01-11',
-       '2022-10-10'
-    WHERE NOT EXISTS (SELECT 1 FROM patient WHERE id = '223e4567-e89b-12d3-a456-426614174007');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '223e4567-e89b-12d3-a456-426614174008',
-       'Laura White',
-       'laura.white@example.com',
-       '789 Palm St, Springfield',
-       '1989-09-02',
-       '2024-04-20'
-    WHERE NOT EXISTS (SELECT 1 FROM patient WHERE id = '223e4567-e89b-12d3-a456-426614174008');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '223e4567-e89b-12d3-a456-426614174009',
-       'James Harris',
-       'james.harris@example.com',
-       '321 Cherry St, Shelbyville',
-       '1993-11-15',
-       '2023-06-30'
-    WHERE NOT EXISTS (SELECT 1 FROM patient WHERE id = '223e4567-e89b-12d3-a456-426614174009');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '223e4567-e89b-12d3-a456-426614174010',
-       'Emma Moore',
-       'emma.moore@example.com',
-       '654 Spruce St, Capital City',
-       '1980-08-09',
-       '2023-01-22'
-    WHERE NOT EXISTS (SELECT 1 FROM patient WHERE id = '223e4567-e89b-12d3-a456-426614174010');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '223e4567-e89b-12d3-a456-426614174011',
-       'Ethan Martinez',
-       'ethan.martinez@example.com',
-       '987 Redwood St, Springfield',
-       '1984-05-03',
-       '2024-05-12'
-    WHERE NOT EXISTS (SELECT 1 FROM patient WHERE id = '223e4567-e89b-12d3-a456-426614174011');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '223e4567-e89b-12d3-a456-426614174012',
-       'Sophia Clark',
-       'sophia.clark@example.com',
-       '123 Hickory St, Shelbyville',
-       '1991-12-25',
-       '2022-11-11'
-    WHERE NOT EXISTS (SELECT 1 FROM patient WHERE id = '223e4567-e89b-12d3-a456-426614174012');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '223e4567-e89b-12d3-a456-426614174013',
-       'Daniel Lewis',
-       'daniel.lewis@example.com',
-       '456 Cypress St, Capital City',
-       '1976-06-08',
-       '2023-09-19'
-    WHERE NOT EXISTS (SELECT 1 FROM patient WHERE id = '223e4567-e89b-12d3-a456-426614174013');
-
-INSERT INTO patient (id, name, email, address, date_of_birth, registered_date)
-SELECT '223e4567-e89b-12d3-a456-426614174014',
-       'Isabella Walker',
-       'isabella.walker@example.com',
-       '789 Willow St, Springfield',
-       '1987-10-17',
-       '2024-03-29'
-    WHERE NOT EXISTS (SELECT 1 FROM patient WHERE id = '223e4567-e89b-12d3-a456-426614174014');
+INSERT INTO patient (id, name, gender, age, email, address, date_of_birth, registered_date)
+VALUES ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0001', 'Liam Anderson', 'MALE', 37, 'liam.anderson@example.com',
+        '12 Oak Street, Springfield', '1987-04-12', '2024-01-10'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0002', 'Olivia Martin', 'FEMALE', 32, 'olivia.martin@example.com',
+        '45 Pine Avenue, Shelbyville', '1992-09-03', '2023-12-15'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0003', 'Noah Thompson', 'MALE', 39, 'noah.thompson@example.com',
+        '78 Maple Road, Capital City', '1985-11-22', '2024-02-01'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0004', 'Emma Garcia', 'FEMALE', 29, 'emma.garcia@example.com',
+        '34 Cedar Lane, Springfield', '1995-07-19', '2023-11-30'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0005', 'William Martinez', 'MALE', 46, 'william.martinez@example.com',
+        '90 Birch Blvd, Shelbyville', '1978-02-14', '2022-10-05'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0006', 'Sophia Robinson', 'FEMALE', 34, 'sophia.robinson@example.com',
+        '22 Walnut St, Capital City', '1990-12-01', '2024-03-12'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0007', 'James Clark', 'MALE', 41, 'james.clark@example.com',
+        '67 Cherry Street, Springfield', '1983-06-30', '2023-09-21'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0008', 'Isabella Lewis', 'FEMALE', 26, 'isabella.lewis@example.com',
+        '15 Willow Drive, Shelbyville', '1998-01-05', '2024-04-01'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0009', 'Benjamin Walker', 'MALE', 43, 'benjamin.walker@example.com',
+        '56 Cypress Ave, Capital City', '1981-03-17', '2023-07-14'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0010', 'Mia Hall', 'FEMALE', 30, 'mia.hall@example.com',
+        '101 Redwood St, Springfield', '1994-08-26', '2024-02-20'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0011', 'Lucas Allen', 'MALE', 38, 'lucas.allen@example.com',
+        '29 Spruce Street, Shelbyville', '1986-05-09', '2023-06-11'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0012', 'Charlotte Young', 'FEMALE', 31, 'charlotte.young@example.com',
+        '88 Palm Blvd, Capital City', '1993-10-13', '2024-01-28'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0013', 'Henry Hernandez', 'MALE', 45, 'henry.hernandez@example.com',
+        '40 Aspen Way, Springfield', '1979-12-24', '2023-05-17'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0014', 'Amelia King', 'FEMALE', 28, 'amelia.king@example.com',
+        '73 Magnolia Rd, Shelbyville', '1996-02-02', '2024-03-05'),
+       ('9c3d6d10-1f24-4c3a-b8e1-1a6d7f0a0015', 'Alexander Wright', 'MALE', 40, 'alexander.wright@example.com',
+        '11 Poplar Street, Capital City', '1984-09-09', '2023-12-09');
