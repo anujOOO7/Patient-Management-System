@@ -1,9 +1,10 @@
-package com.pm.patientservice.controller;
+package com.pm.patientservice.api.controller;
 
-import com.pm.patientservice.dto.PatientRequestDTO;
-import com.pm.patientservice.dto.PatientResponseDTO;
-import com.pm.patientservice.dto.validators.CreatePatientValidationGroup;
-import com.pm.patientservice.service.PatientService;
+import com.pm.patientservice.api.dto.PatientRequestDTO;
+import com.pm.patientservice.api.dto.PatientResponseDTO;
+import com.pm.patientservice.api.dto.validators.CreatePatientValidationGroup;
+import com.pm.patientservice.api.service.PatientService;
+import com.pm.patientservice.impl.service.PatientServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.groups.Default;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/patients")
+@RequestMapping("/v1/patients")
 @Tag(name = "Patient", description = "API for managing Patients")
 public class PatientController {
 
@@ -30,6 +31,13 @@ public class PatientController {
     public ResponseEntity<List<PatientResponseDTO>> getAllPatients() {
         List<PatientResponseDTO> patients = patientService.getAllPatient();
         return ResponseEntity.ok().body(patients);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get Patients by Id")
+    public ResponseEntity<PatientResponseDTO> getPatientById(@PathVariable UUID id) {
+        PatientResponseDTO patientResponseDTO = patientService.getPatientById(id);
+        return ResponseEntity.ok().body(patientResponseDTO);
     }
 
     @PostMapping

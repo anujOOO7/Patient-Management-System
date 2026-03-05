@@ -1,4 +1,4 @@
-package com.pm.patientservice.exceptions;
+package com.pm.patientservice.api.exceptions;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
