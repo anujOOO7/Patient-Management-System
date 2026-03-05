@@ -1,4 +1,4 @@
-package com.pm.patientservice.dto.validators;
+package com.pm.patientservice.api.dto.validators;
 
 public interface CreatePatientValidationGroup {
 }

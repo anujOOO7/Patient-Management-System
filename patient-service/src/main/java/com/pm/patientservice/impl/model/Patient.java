@@ -1,4 +1,4 @@
-package com.pm.patientservice.model;
+package com.pm.patientservice.impl.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -24,6 +24,12 @@ public class Patient {
     private String name;
 
     @NotNull
+    private Integer age;
+
+    @NotNull
+    private String gender;
+
+    @NotNull
     @Email
     @Column(unique = true)
     private String email;
@@ -36,5 +42,5 @@ public class Patient {
 
     @NotNull
     private LocalDate registeredDate;
-    
+
 }
