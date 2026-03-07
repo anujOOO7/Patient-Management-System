@@ -13,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "patient")
 @Entity
 public class Patient {
 
@@ -38,9 +39,11 @@ public class Patient {
     private String address;
 
     @NotNull
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
     @NotNull
+    @Column(name = "registered_date")
     private LocalDate registeredDate;
 
 }
